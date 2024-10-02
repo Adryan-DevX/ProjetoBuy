@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'title' %} 
+    Buy - Entrar
+{% endblock 'title'%}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/login.css' %}">
+{% endblock 'head' %}
+
+{% block 'body' %}
+
+    <div class="centralizar">
+        <div class="container">
+
+            <div class="logo">
+                <img class="logo-foto" src="/static/geral/img/logo-buy.png" alt="Logo da agência">
+            </div><!--logo-->
+
+            {% if messages %}
+                {% for message in messages %}
+                    <section class="alert {{message.tags}}">
+                        {{message}}
+
+                    </section>
+                {% endfor %}
+            {% endif %}
+
+            <!--formulário -->
+            <form action="{% url 'login' %}" method="POST" class="login-form">{% csrf_token %}
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" id="senha" name="senha" placeholder="Senha">
+                <span class="toggle-password" onclick="togglePasswordVisibility()">
+                    <i class="bi bi-eye"></i>
+                </span>
+                <a href="{% url 'cadastro' %}" class="link-cadastro">Fazer cadastro</a>
+                <input type="submit" class="btn-login" value="Entar">
+            </form>
+
+        </div><!--container-->
+    </div><!--centralizar-->
+
+{% endblock 'body' %}
